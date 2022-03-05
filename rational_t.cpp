@@ -8,19 +8,21 @@
 //              "C++ Programming Style Guidelines"
 //              https://geosoft.no/development/cppstyle.html
 
-// pauta de estilo [92]: comentarios multilínea usando solo "//"
+#include <iostream>
+#include <cmath>
 
 #include "rational_t.hpp"
 
+// Constructor parametrizado.
 rational_t::rational_t(const int n, const int d)
 {
   assert(d != 0);
   num_ = n, den_ = d;
 }
 
-// pauta de estilo [87]: 3 líneas de separación entre métodos
 
-// pauta de estilo [83]: tipo retornado en línea anterior al método
+
+// Getter del numerador.
 int
 rational_t::get_num() const
 {
@@ -29,6 +31,7 @@ rational_t::get_num() const
 
 
 
+// Getter del denominador.
 int
 rational_t::get_den() const
 {
@@ -36,7 +39,8 @@ rational_t::get_den() const
 }
 
 
-  
+
+// Setter del numerador.  
 void
 rational_t::set_num(const int n)
 {
@@ -44,7 +48,8 @@ rational_t::set_num(const int n)
 }
 
 
-  
+
+// Setter del denominador.   
 void
 rational_t::set_den(const int d)
 {
@@ -54,6 +59,7 @@ rational_t::set_den(const int d)
 
 
 
+// Función que devuelve el valor numérico del número racional.
 double
 rational_t::value() const
 { 
@@ -61,57 +67,73 @@ rational_t::value() const
 }
 
 
-// comparaciones
-//bool
-//rational_t::is_equal(const rational_t& r, const double precision) const
-//{ 
-//}
+// Comparaciones.
+
+// Función que compara si dos números racionales son iguales.
+bool
+rational_t::is_equal(const rational_t& r, const double precision) const
+{ 
+  return (fabs(this-> value() - r.value()) < precision);
+}
 
 
 
-//bool
-//rational_t::is_greater(const rational_t& r, const double precision) const
-//{
-//}
+// Función que compara si un número racional es mayor que otro.
+bool
+rational_t::is_greater(const rational_t& r, const double precision) const
+{
+  return (this-> value() - r.value() > precision);
+}
 
 
 
-//bool
-//rational_t::is_less(const rational_t& r, const double precision) const
-//{
-//}
+// Función que compara si un número racional es menor a otro.
+bool
+rational_t::is_less(const rational_t& r, const double precision) const
+{
+  return((this-> value() - r.value() < (- precision)) && (r.value() - this->value() > precision));
+}
 
 
-// operaciones
-//rational_t
-//rational_t::add(const rational_t& r)
-//{
-//}
+// Operaciones.
 
-
-
-//rational_t
-//rational_t::substract(const rational_t& r)
-//{
-//}
-
-
-
-//rational_t
-//rational_t::multiply(const rational_t& r)
-//{
-//}
+// Función que realiza la suma de dos números racionales.
+rational_t
+rational_t::add(const rational_t& r)
+{
+  return rational_t(this-> get_num() * r.get_den() + (this-> get_den() * r.get_num()), this-> get_den() * r.get_den());
+}
 
 
 
-//rational_t
-//rational_t::divide(const rational_t& r)
-//{
-//}
+// Función que realiza la resta de dos números racionales.
+rational_t
+rational_t::substract(const rational_t& r)
+{
+  return rational_t(this-> get_num() * r.get_den() - (this-> get_den() * r.get_num()), this-> get_den() * r.get_den());
+}
 
 
 
-// E/S
+// Función que realiza la multiplicación de dos números racionales.
+rational_t
+rational_t::multiply(const rational_t& r)
+{
+  return rational_t(this-> get_num() * r.get_num(), this-> get_den() * r.get_den());
+}
+
+
+
+// Función que realiza la división de dos números racionales.
+rational_t
+rational_t::divide(const rational_t& r)
+{
+  return rational_t(this->get_num() * r.get_den(), this-> get_den() * r.get_num());
+}
+
+
+
+// Función de escritura a la pantalla.
 void
 rational_t::write(ostream& os) const
 {
@@ -120,6 +142,7 @@ rational_t::write(ostream& os) const
 
 
 
+// Función de lectura por teclado.
 void 
 rational_t::read(istream& is)
 {
