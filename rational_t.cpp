@@ -78,6 +78,14 @@ bool rational_t::is_less(const rational_t &racional, const double precision) con
   return((value() - racional.value() < (- precision)) && (racional.value() - value() > precision) && (fabs(get_den()) != 0 || fabs(racional.get_den()) != 0));
 }
 
+// Modificación
+bool rational_t::is_integer() const {
+  if (get_num() % get_den() == 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // Operaciones.
 // Función que realiza la suma de dos números racionales.

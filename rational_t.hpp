@@ -52,6 +52,9 @@ class rational_t {
 
   // Método de lectura por teclado.
   void read(istream& = cin);
+
+  // Modificación
+  bool is_integer()const;
   
 private:
   int numerador_, denominador_;

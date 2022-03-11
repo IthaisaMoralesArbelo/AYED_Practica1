@@ -66,6 +66,11 @@ int main() {
   // División
   cout << "a / b: ";
   a.divide(b).write();
+
+  // Modificación
+  cout << "El numero racional:" << endl;
+  c.write();
+  cout << (c.is_integer()?"Entero":"No entero")<<endl;
   
   return 0;
 }
